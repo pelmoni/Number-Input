@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StandardIntputComponent } from './standard-intput.component';
+import { StandardInputComponent } from './standard-input.component';
 
 describe('StandardIntputComponent', () => {
-  let component: StandardIntputComponent;
-  let fixture: ComponentFixture<StandardIntputComponent>;
+  let component: StandardInputComponent;
+  let fixture: ComponentFixture<StandardInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StandardIntputComponent]
+      imports: [StandardInputComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(StandardIntputComponent);
+
+    fixture = TestBed.createComponent(StandardInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
