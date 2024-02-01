@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
@@ -8,18 +8,46 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
+  darkMode: boolean = false;
+  darkestMode: boolean = false;
+
   title = 'Number Input';
+
+
+  ngOnInit() {
+
+    document.addEventListener('mousemove', this.update);
+    document.addEventListener('touchmove', this.update);
+  }
+
+  update(e: any) {
+    const x = e.clientX || e.touches[0].clientX;
+    const y = e.clientY || e.touches[0].clientY;
+
+    // @ts-ignore
+    document.getElementById('cover').style.setProperty('--cursorX', x+'px');
+    // @ts-ignore
+    document.getElementById('cover').style.setProperty('--cursorY', y+'px');
+  }
+
   setTheme() {
 
-    if (document.documentElement.className !== 'dark' && document.documentElement.className !=='darkest'){
+    if (!this.darkMode && !this.darkestMode){
       if (confirm('It is scary in the dark maybe take a flashlight?')){
-        document.documentElement.className = 'dark'
+        this.darkMode = true;
+        this.darkestMode = false;
       } else {
-        document.documentElement.className = 'darkest'
+        this.darkestMode = true;
+        this.darkMode = false;
       }
     } else {
-      document.documentElement.className = 'light'
+      this.darkestMode = false;
+      this.darkMode = false;
     }
   }
+
+
+
 }
